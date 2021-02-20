@@ -1,23 +1,25 @@
 #参照ruicky/jd_sign_bot 
-
 name: Github dkd-auto-coin
+
 on:
-    push:
-        branches:
-            - master
+    workflow_dispatch:
     schedule:
-        - cron: '27 * * * *'
+        - cron: '27 * * * *' 
+    watch: 
+     types: [started]
 jobs:
     build:
         runs-on: ubuntu-latest
- 
+        if: github.event.repository.owner.id == github.event.sender.id
         steps:
             - name: Checkout codes
               uses: actions/checkout@v2
-            - name: Use Node.js
+              
+            - name: 'Use Node.js'
               uses: actions/setup-node@v1
               with:
                 node-version: '12.x'
+                
             - name: Run
               run: npm install
             - run: node dkd_coin.js
