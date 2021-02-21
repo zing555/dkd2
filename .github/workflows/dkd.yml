@@ -4,7 +4,7 @@ name: Github dkd-auto-coin
 on:
     workflow_dispatch:
     schedule:
-        - cron: '*/40 * * * *' 
+        - cron: '*/20 * * * *' 
     watch: 
      types: [started]
 jobs:
